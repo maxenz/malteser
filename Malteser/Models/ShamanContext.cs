@@ -13,6 +13,6 @@ namespace Malteser.Models
         {
         }
 
-
+        public DbSet<Incidente> Incidentes { get; set; }
     }
 }

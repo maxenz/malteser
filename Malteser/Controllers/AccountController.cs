@@ -23,6 +23,7 @@ namespace Malteser.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            ViewBag.Title = "Login";
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

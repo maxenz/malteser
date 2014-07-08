@@ -8,65 +8,58 @@ $("#dtServFinalizados").jqxDateTimeInput({ width: '100%', height: '25px', theme:
 // --> Seteo las columnas para la grilla de servicios finalizados
 var colGridFinalizados = [
                         { text: 'ID', datafield: 'ID', hidden: true },
-                        { text: 'Fecha', datafield: 'FecIncidente', width: '8%', cellsalign: 'center' },
-                        { text: 'Inc', datafield: 'NroIncidente', width: '3%', cellsalign: 'center' },
-                        { text: 'Cliente', datafield: 'ClienteID', width: '5%', cellsalign: 'center' },
-                        //{ text: 'Llamada', datafield: 'Llamada', width: '3%', cellsalign: 'center' },
-                        { text: 'Nro. Afiliado', datafield: 'IntegranteID', width: '8%', cellsalign: 'center' },
-                        { text: 'Paciente', datafield: 'Nombre', width: '16%' },
-                        { text: 'Domicilio', datafield: 'Domicilio', width: '13%' },
-                        { text: 'Loc', datafield: 'Localidad', width: '9%' },
-                        { text: 'Síntoma', datafield: 'Sintoma', width: '11%' },
+                        { text: 'Fecha', datafield: 'FechaInc', width: '5%' },
+                        { text: 'Inc', datafield: 'NroInc', width: '5%', cellsalign: 'center' },
+                        { text: 'Interno', datafield: 'NroInterno', width: '5%', cellsalign: 'center' },
+                        { text: 'Nro. Afiliado', datafield: 'NroAfiliado', width: '8%', cellsalign: 'center' },
+                        { text: 'Paciente', datafield: 'Paciente', width: '15%' },
+                        { text: 'Domicilio', datafield: 'Domicilio', width: '17%' },
+                        { text: 'Loc', datafield: 'Localidad', width: '10%' },
+                        { text: 'Síntoma', datafield: 'Sintomas', width: '15%' },
                         { text: 'Grado', datafield: 'Grado', width: '5%', cellsalign: 'center' },
-                        //{ text: 'Arribo', datafield: 'Arribo', width: '3%', cellsalign: 'center' },
-                        { text: 'Diagnóstico', datafield: 'Diagnostico', width: '12%' },
-                        { text: 'Deriva', datafield: 'Deriva', width: '6%', cellsalign: 'center' },
-                        { text: 'Final', datafield: 'Final', width: '4%', cellsalign: 'center' }
+                        { text: 'Cierre', datafield: 'Cierre', width: '10%' },
+                        { text: 'Final', datafield: 'Final', width: '5%', cellsalign: 'center' }
 ];
 
 // --> Seteo los datafields para la grilla de servicios finalizados
-var dtFieldsFinalizados = [{ name: 'ID', type: 'number' }, { name: 'FecIncidente', type: 'string' },
-                        { name: 'NroIncidente', type: 'string' }, { name: 'ClienteID', type: 'string' },
-                        //{ name: 'Llamada', type: 'string' },
-                        { name: 'IntegranteID', type: 'string' },
-                        { name: 'Nombre', type: 'string' }, { name: 'Domicilio', type: 'string' },
-                        { name: 'Localidad', type: 'string' }, { name: 'Sintoma', type: 'string' },
-                        { name: 'Grado', type: 'string' },
-                        //{ name: 'Arribo', type: 'string' },
-                        { name: 'Diagnostico', type: 'string' }, { name: 'Deriva', type: 'string' },
-                        { name: 'Final', type: 'string' }];
+var dtFieldsFinalizados = [{ name: 'ID', type: 'number' }, { name: 'FechaInc', type: 'string' },
+                        { name: 'NroInc', type: 'string' }, { name: 'NroInterno', type: 'string' },
+                        { name: 'NroAfiliado', type: 'string' }, { name: 'Paciente', type: 'string' },
+                        { name: 'Domicilio', type: 'string' }, { name: 'Localidad', type: 'string' },
+                        { name: 'Sintomas', type: 'string' },  { name: 'Grado', type: 'string' },
+                        { name: 'Cierre', type: 'string' }, { name: 'Final', type: 'string' }];
 
 // --> FUNCIONES PARA SERVICIOS FINALIZADOS
 
 // --> Obtengo via ajax los datos de la grilla de servicios finalizados
-//function getSourceGrdFinalizados() {
-//    var objDatetime = $('#dtServFinalizados');
-//    var fd = getRangoFechas(0, objDatetime);
-//    var fh = getRangoFechas(1, objDatetime);
+function getSourceGrdFinalizados() {
+    var objDatetime = $('#dtServFinalizados');
+    var fd = getRangoFechas(0, objDatetime);
+    var fh = getRangoFechas(1, objDatetime);
 
-//    var src = {
-//        datatype: "json",
-//        datafields: dtFieldsFinalizados,
-//        url: 'OperativaClientes/GetServiciosClientes',
-//        data:
-//            {
-//                fecDesde: fd,
-//                fecHasta: fh,
-//                pWS: 2
-//            }
-//    };
+    var src = {
+        datatype: "json",
+        datafields: dtFieldsFinalizados,
+        url: 'Operativa/getFinalizados',
+        data:
+            {
+                fecDesde: fd,
+                fecHasta: fh
+            }
+    };
 
-//    var dt = new $.jqx.dataAdapter(src);
+    var dt = new $.jqx.dataAdapter(src);
 
-//    return dt;
-//}
+    return dt;
+}
 
 function getRangoFechas(idx, objDateTime) {
     var jsDate = objDateTime.jqxDateTimeInput('getText');
     var vDate = jsDate.split("-");
     var dateCalculate = vDate[idx].trim();
     var vMesAnioDia = dateCalculate.split("/");
-    return vMesAnioDia[2] + vMesAnioDia[1] + vMesAnioDia[0];
+    return vMesAnioDia[2] + '-' + vMesAnioDia[1] + '-' + vMesAnioDia[0];
+
 }
 
 
@@ -78,7 +71,7 @@ function setValuesGrid(objGrid, src, columnas) {
         {
             width: '100%',
             autoheight: true,
-            source: null,
+            source: src,
             pageable: true,
             pagesize: 15,
             altrows: true,
@@ -107,7 +100,8 @@ $('#dtServFinalizados').on('valuechanged', function (event) {
 // --> Seteo la grilla de servicios en curso con el source, columnas y datafields
 
 setValuesGrid($('#grdServFinalizados'),
-              null,
+              getSourceGrdFinalizados(),
               colGridFinalizados);
+
 
 

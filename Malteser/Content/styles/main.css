@@ -11,6 +11,7 @@ body {
     margin-right: 10px;
     overflow-x: hidden;
     padding-top: 50px;
+
 }
 
 
@@ -311,3 +312,8 @@ background-color:#FFFFFF}
 background-color:#428bca}
 
 } 
+
+#titleEmpresa {
+    color:#e67e22;
+    font-weight:bold;
+}
