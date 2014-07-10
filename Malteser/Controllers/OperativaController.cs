@@ -34,7 +34,7 @@ namespace Malteser.Controllers
             string qryIncidentes =
               "SELECT inc.ID ID, CONVERT(VARCHAR, inc.FecIncidente, 3) FechaInc, inc.NroIncidente NroInc, 0 AS NroInterno, inc.NroAfiliado NroAfiliado," +
               "inc.Paciente Paciente,dom.Domicilio Domicilio, loc.Descripcion Localidad,inc.Sintomas Sintomas," +
-              "con.AbreviaturaId Grado,CASE vij.DiagnosticoId WHEN 0 THEN dig.Descripcion ELSE mot.Descripcion END Cierre," +
+              "con.AbreviaturaId Grado,CASE vij.DiagnosticoId WHEN 0 THEN mot.Descripcion ELSE dig.Descripcion END Cierre," +
               "CONVERT(VARCHAR, vij.horFinalizacion, 3) Final " +
               "FROM Incidentes inc " +
               "INNER JOIN Clientes cli ON (inc.ClienteId = cli.ID) " +
