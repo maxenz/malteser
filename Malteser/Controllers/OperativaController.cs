@@ -35,7 +35,7 @@ namespace Malteser.Controllers
               "SELECT inc.ID ID, CONVERT(VARCHAR, inc.FecIncidente, 3) FechaInc, inc.NroIncidente NroInc, 0 AS NroInterno, inc.NroAfiliado NroAfiliado," +
               "inc.Paciente Paciente,dom.Domicilio Domicilio, loc.Descripcion Localidad,inc.Sintomas Sintomas," +
               "con.AbreviaturaId Grado,CASE vij.DiagnosticoId WHEN 0 THEN mot.Descripcion ELSE dig.Descripcion END Cierre," +
-              "CONVERT(VARCHAR, vij.horFinalizacion, 3) Final " +
+              "CASE vij.horFinalizacion WHEN '2999-12-31' THEN NULL ELSE CONVERT(VARCHAR, vij.horFinalizacion, 3) END AS Final  " +
               "FROM Incidentes inc " +
               "INNER JOIN Clientes cli ON (inc.ClienteId = cli.ID) " +
               "INNER JOIN IncidentesDomicilios dom ON (inc.ID = dom.IncidenteId) " +
