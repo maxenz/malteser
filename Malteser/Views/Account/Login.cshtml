@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/Content/styles/login.css" rel="stylesheet">
-    <title>Paramedic - @ViewBag.Title</title>
+    <title>Malteser - @ViewBag.Title</title>
 
 </head>
 <body>
@@ -26,7 +26,7 @@
             @Html.ValidationSummary(true)
 
 
-            @Html.TextBoxFor(m => m.UserName, new { @placeholder = "Email", @autofocus = true })
+            @Html.TextBoxFor(m => m.UserName, new { @placeholder = "Usuario", @autofocus = true })
             @Html.ValidationMessageFor(m => m.UserName)
 
 

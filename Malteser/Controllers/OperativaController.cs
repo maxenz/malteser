@@ -44,8 +44,9 @@ namespace Malteser.Controllers
               "INNER JOIN GradosOperativos gdo ON (inc.GradoOperativoId = gdo.ID) " +
               "LEFT JOIN ConceptosFacturacion con ON (gdo.ConceptoFacturacion1Id = con.ID) " +
               "LEFT JOIN Diagnosticos dig ON (vij.DiagnosticoId = dig.ID) " +
-              "LEFT JOIN MotivosNoRealizacion mot ON (vij.MotivoNoRealizacionId = mot.ID) " + 
-              "WHERE inc.FecIncidente BETWEEN '" + vDesde + "' AND '" + vHasta + "'" ;
+              "LEFT JOIN MotivosNoRealizacion mot ON (vij.MotivoNoRealizacionId = mot.ID) " +
+              "WHERE inc.FecIncidente BETWEEN '" + vDesde + "' AND '" + vHasta + "' " +
+              "AND cli.AbreviaturaId = 'SWISS' ";
 
             IEnumerable<Incidente> incidentes =
               db.Database.SqlQuery<Incidente>(qryIncidentes);
